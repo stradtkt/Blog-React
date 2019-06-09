@@ -1,0 +1,3 @@
+{
+    "mongoURI": "mongodb://kevin:kevin123@ds135207.mlab.com:35207/blog_mern"
+}
