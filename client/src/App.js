@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Fragment} from 'react';
+import Container from '@material-ui/core/Container';
+import NavAppBar from './components/layout/NavAppBar';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
+import Landing from './components/layout/Landing';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <Router>
+            <Fragment>
+                <Container maxWidth="lg">
+                    <NavAppBar/>
+                    <Switch>
+                        <Route exact={true} path='/' component={Landing}/>
+                        <Route exact={true} path='/login' component={Login}/>
+                        <Route exact={true} path='/register' component={Register}/>
+                    </Switch>
+                </Container>
+            </Fragment>
+        </Router>
+    );
 }
 
 export default App;
