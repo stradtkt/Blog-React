@@ -6,6 +6,7 @@ import {setAlert} from '../../actions/alert';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 const Register = ({setAlert}) => {
     const [formData, setFormData] = useState({
@@ -16,7 +17,7 @@ const Register = ({setAlert}) => {
     });
     const {name, email, password, password2} = formData;
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
-    const onSubmit = async e => {
+    const onSubmit = e => {
         e.preventDefault();
         if(password !== password2) {
             setAlert('Passwords do not match', 'danger');
@@ -24,80 +25,67 @@ const Register = ({setAlert}) => {
             setAlert('SUCCESS', 'success');
         }
     }
+    const useStyles = makeStyles(theme => ({
+        container: {
+          display: 'inline-block',
+          flexWrap: 'wrap',
+        },
+        textField: {
+          marginLeft: theme.spacing(1),
+          marginRight: theme.spacing(1),
+          width: '100%',
+        },
+        dense: {
+          marginTop: 19,
+        },
+        menu: {
+          width: 200,
+        },
+      }));
+      const classes = useStyles();
     return (
         <Grid>
             <div className="page-title">
                 <h1 className="title">Register</h1>
             </div>
             <form onSubmit={e => onSubmit(e)}>
-                <Grid item xs={12} md={12}>
                 <TextField
-                    id="filled-full-width"
+                    type="text"
                     label="Name"
-                    style={{ margin: 8 }}
-                    fullWidth
                     name="name"
-                    margin="normal"
-                    variant="filled"
-                    InputLabelProps={{
-                    shrink: true,
-                    }}
+                    className={classes.textField}
                     value={name}
                     onChange={e => onChange(e)}
+                    margin="normal"
                 />
-                </Grid>
-                <Grid item xs={12} md={12}>
-                    <TextField
-                        id="filled-full-width"
-                        label="Email"
-                        style={{ margin: 8 }}
-                        placeholder="Enter Your Email"
-                        fullWidth
-                        name="email"
-                        margin="normal"
-                        variant="filled"
-                        InputLabelProps={{
-                        shrink: true,
-                        }}
-                        value={email}
-                        onChange={e => onChange(e)}
-                    />
-                </Grid>
-                <Grid xs={12} md={12} lg={12}>
-                    <TextField
-                        type="password"
-                        id="filled"
-                        fullWidth
-                        label="Password"
-                        style={{ margin: 8 }}
-                        name="name"
-                        margin="normal"
-                        variant="filled"
-                        InputLabelProps={{
-                        shrink: true,
-                        }}
-                        value={password}
-                        onChange={e => onChange(e)}
-                    />
-                </Grid>
-                <Grid xs={12} md={12} lg={12}>
-                    <TextField
-                        type="password"
-                        id="filled"
-                        fullWidth
-                        label="Confirm Password"
-                        style={{ margin: 8 }}
-                        name="password2"
-                        margin="normal"
-                        variant="filled"
-                        InputLabelProps={{
-                        shrink: true,
-                        }}
-                        value={password2}
-                        onChange={e => onChange(e)}
-                    />
-                </Grid>
-                <Button variant="contained" color="primary">Register</Button>
+                <TextField
+                    type="email"
+                    label="Email"
+                    name="email"
+                    className={classes.textField}
+                    value={email}
+                    onChange={e => onChange(e)}
+                    margin="normal"
+                />
+                <TextField
+                    type="password"
+                    label="Password"
+                    name="password"
+                    className={classes.textField}
+                    value={password}
+                    onChange={e => onChange(e)}
+                    margin="normal"
+                />
+                <TextField
+                    type="password"
+                    label="Confirm Password"
+                    name="password2"
+                    className={classes.textField}
+                    value={password2}
+                    onChange={e => onChange(e)}
+                    margin="normal"
+                />
+                <Button type="submit" variant="contained" color="primary">Register</Button>
             </form>
             <Grid container>
                 <Grid item xs={3} sm={3} md={3} lg={3}></Grid>

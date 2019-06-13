@@ -8,6 +8,7 @@ import Landing from './components/layout/Landing';
 import {Provider} from 'react-redux';
 import store from './store';
 import './App.css';
+import Alert from './components/layout/Alert';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
                 <Fragment>
                     <Container maxWidth="lg">
                         <NavAppBar/>
+                        <Alert/>
                         <Switch>
                             <Route exact={true} path='/' component={Landing}/>
                             <Route exact={true} path='/login' component={Login}/>
