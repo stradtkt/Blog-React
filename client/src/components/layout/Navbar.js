@@ -52,6 +52,10 @@ export default function TemporaryDrawer() {
     >
       <List>
           <ListItem>
+            <i className="fas fa-home"></i>
+            <Link to="/">Home</Link>
+          </ListItem>
+          <ListItem>
             <i className="fas fa-power-off"></i>
             <Link to="/login">Login</Link>
           </ListItem>

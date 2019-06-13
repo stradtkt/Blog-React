@@ -12,3 +12,12 @@ a:hover {
     padding: 5px;
     transition: all 0.4s ease-in-out;
 }
+.page-title {
+    padding: 40px;
+}
+.title {
+    text-align: center;
+    color: dodgerblue;
+    font-weight: 800;
+    font-size: 2rem;
+}
