@@ -1,16 +1,20 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const config = require('config');
-const port = process.env.PORT || 5000;
+const connectDB = require('./config/db');
 const app = express();
-const db = config.get('mongoURI');
-app.use(express());
-mongoose.connect(db)
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log('There was an error connecting to MongoDB', err));
-app.use('/api/posts', require('/routes/api/posts'));
-app.use('/api/users', require('/routes/api/users'));
+connectDB();
+const PORT = process.env.PORT || 5000;
+
+app.use(express.json({extended: false}));
+
 app.get('/', (req, res) => {
-    res.send('App Here');
+    res.send('API Running');
 });
-app.listen(port, () => console.log(`App is listening on port ${port}`));
+
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/posts', require('./routes/api/posts'));
+app.use('/api/profile', require('./routes/api/profile'));
+
+app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}!`);
+});
